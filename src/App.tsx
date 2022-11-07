@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import Header from './components/Header';
+import InputContent from './components/InputContent';
 import Counter from './Counter';
 import MyForm from './MyForm';
 import ReducerSample from './ReducerSample';
@@ -15,7 +17,9 @@ function App() {
         <header className="App-header">
           {/* <Counter /> */}
           {/* <MyForm onSubmit={onSubmit} />; */}
-          <ReducerSample />
+          {/* <ReducerSample /> */}
+          <Header />
+          <InputContent />
         </header>
       </div>
     </SampleProvider>
