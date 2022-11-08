@@ -7,19 +7,27 @@ interface  Content  {
   complete: boolean
 };
 
+// interface PropsTodo {
+//   setTodo: React.Dispatch<React.SetStateAction<Content[]>>
+// }
 
-const TodoList = ({ todo, idx }:{todo: Content, idx: number}) => {
-  console.log(todo,idx)
+const TodoList = ({ data ,setTodo, todo}:{data: Content, setTodo:  React.Dispatch<React.SetStateAction<Content[]>>, todo: Content[]}) => {
+
   const isDone = () => {
-    console.log('완료', todo.id)
+    const toggle = todo.map(x =>  (x.id === data.id) ? (!x.complete) : x.complete )
+    console.log([...todo],toggle)
+    // setTodo()
 
+    // [...todo].map((x, i) => 
+    //   {if(x.id === data.id){x.complete: !x.complete}}
+    // )
   }
   const del = () => {
-    console.log('삭제')
+    setTodo(todo.filter((x) => x.id !== data.id))
   } 
   return (
     <div className='Container'>
-      <div>{todo.content}</div>
+      {data.complete ? <div></div> : <div>{data.content}</div>}
       <div>
         <button className='noStyleBtn' onClick={isDone}>✅</button>
         <button className='noStyleBtn' onClick={del}>❌</button>

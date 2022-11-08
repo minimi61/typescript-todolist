@@ -2,13 +2,15 @@ import React,{useState} from 'react'
 import TodoList from './TodoList'
 import '../App.css'
 
-type Content = {
+interface Content {
     id: number,
     content: string,
     complete: boolean
  };
 
-let nextId = 1;
+
+// type Dispatch<Content> = (value: Content) => void
+
 
 const InputContent = () => {
   const [inputs, setInputs] = useState<string>('')
@@ -20,14 +22,16 @@ const InputContent = () => {
     setInputs(e.target.value)
   } 
 
+  let nextId = Math.random();
   const submit = (e:any) => {
     e.preventDefault();
+
     // console.log('submit')
     if (!inputs) return 
     let data = {
-      id: nextId++,
+      id: nextId,
       content: inputs,
-      complete: true
+      complete: false
     }
     console.log('data', data)
     setTodo([...todo, data])
@@ -39,11 +43,9 @@ const InputContent = () => {
     <div>
       <form onSubmit={submit}>
         <input type="text" className='inputStyle' onChange={inputChange} value={inputs} />
-        <button className='btnStyle' type='submit'>
-          +
-        </button>
+        <button className='btnStyle' type='submit'>+</button>
       </form>
-      {todo?.map((x, i) => <TodoList todo={x} key={i} idx={i} />)}
+      {todo?.map((x, i) => <TodoList data={x} key={i} setTodo={setTodo} todo={todo} />)}
       
     </div>
   )
