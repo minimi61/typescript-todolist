@@ -77,6 +77,10 @@
   cursor: pointer;
 }
 
+.toggleLine {
+  text-decoration: line-through;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
