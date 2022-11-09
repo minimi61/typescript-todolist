@@ -18,7 +18,7 @@ const InputContent = () => {
     {id:0,content:'블라블라',complete:false}
   ])
 
-  const inputChange = (e: any) => {
+  const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs(e.target.value)
   } 
 
