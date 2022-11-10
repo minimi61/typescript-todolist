@@ -8,6 +8,7 @@ import ReducerSample from './tests/ReducerSample';
 import { SampleProvider } from './tests/SampleContext';
 import Test from './tests/Test';
 import {ContextTodoProvider} from './todo-contextAPI/ContextTodo'
+import ContextInput from './todo-contextAPI/ContextInput';
 
 function App() {
   // const onSubmit = (form: { name: string; description: string }) => {
@@ -23,7 +24,8 @@ function App() {
               {/* <ReducerSample /> */}
               <Header />
               {/* <InputContent /> */}
-              {/* <Test/> */}
+          {/* <Test/> */}
+          <ContextInput />
             </header>
           </div>
         </ContextTodoProvider>

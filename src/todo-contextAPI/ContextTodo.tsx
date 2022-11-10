@@ -5,33 +5,39 @@ type State = {
   content: string;
   complete: boolean
 }
+type ArrayState = State[]
 
 type Action = 
   | { type: 'Add_Todo'; content: string }
-  | { type: 'Remove_Todo'; content: string }
-  | { type: 'Toggle_complete'; complete: boolean }
+  | { type: 'Remove_Todo'; id: number }
+  | { type: 'Toggle_complete'; id: number }
 
 type todoDispatch = Dispatch<Action>
 
-const stateContext = createContext<State | null>(null)
+const stateContext = createContext<ArrayState | null>(null)
 const dispatchContext = createContext<todoDispatch | null>(null)
 
-function reducer(state: State, action: Action): any {
+function reducer(state: ArrayState, action: Action): any {
   switch (action.type) {
     case 'Add_Todo':
-      return {
-        ...state,
-        content: action.content
-      }
+      return state.concat({
+        id: Math.random(),
+        content: action.content,
+        complete: false
+      })
+    case 'Remove_Todo':
+        return state.filter((x)=> x.id !== action.id)
+    case 'Toggle_complete':  
+        return state.map((x) => x.id === action.id ? {...x, complete: !x.complete } : x )
   }
 }
 
 export function ContextTodoProvider ({children} : {children : ReactNode})  {
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, dispatch] = useReducer(reducer, [{
     id: 0,
     content: '블라블라',
     complete: false
-  })
+  }])
 
   return (
     <stateContext.Provider value={state}>

@@ -1,36 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {useTodo, useTodoDispatch} from './ContextTodo'
 import '../App.css'
+import ContextList from './ContextList'
 
 const ContextInput = () => {
+  const todo = useTodo();
+  const todoDispatch = useTodoDispatch();
+
+  const [inputs, setInputs] = useState<string>('')
+
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // setInputs(e.target.value)
+    setInputs(e.target.value)
   } 
 
-  let nextId = Math.random();
   const submit = (e:any) => {
     e.preventDefault();
+    console.log(inputs)
 
-    // console.log('submit')
-    // if (!inputs) return 
-    // let data = {
-    //   id: nextId,
-    //   content: inputs,
-    //   complete: false
-    // }
-    // console.log('data', data)
-    // setTodo([...todo, data])
-    // setInputs('')
+    if (!inputs) return 
+    todoDispatch({type:'Add_Todo', content: inputs })
+
+    setInputs('')
     
   }
   return (
     <div>
     <form onSubmit={submit}>
-        {/* <input type="text" className='inputStyle' onChange={inputChange} value={inputs} /> */}
-      <input type="text" className='inputStyle' onChange={inputChange} />
+        <input type="text" className='inputStyle' onChange={inputChange} value={inputs} />
         
       <button className='btnStyle' type='submit'>+</button>
     </form>
-    {/* {todo?.map((x, i) => <TodoList data={x} key={i} setTodo={setTodo} todo={todo} />)} */}
+    {todo?.map((x, i) => <ContextList data={x} key={i} todo={todo} />)}
     
   </div>  )
 }
