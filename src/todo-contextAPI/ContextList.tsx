@@ -1,5 +1,5 @@
 import React from 'react'
-import {useTodo, useTodoDispatch} from './ContextTodo'
+import { useTodoDispatch} from './ContextTodo'
 
 interface  Content  {
   id: number,
@@ -8,13 +8,10 @@ interface  Content  {
 };
 
 
-const ContextList = ({ data, todo }: { data: Content, todo: Content[] }) => {
-  // const todo = useTodo();
+const ContextList = ({ data }: { data: Content }) => {
   const todoDispatch = useTodoDispatch();
 
   const isDone = () => {
-    // const toggle = todo.map((x) => x.id === data.id? {...x, complete: !x.complete} : x)
-    // setTodo(toggle)
     todoDispatch({type: 'Toggle_complete', id: data.id})
   }
 

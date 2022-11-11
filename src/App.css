@@ -52,6 +52,12 @@
   border-bottom: 1px solid;
 }
 
+.fontColorBlack {
+  color: black;
+  font-size: 20px;
+  padding: 0.7rem;
+}
+
 .inputStyle {
   height: 25px;
   font-size: 23px;

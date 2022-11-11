@@ -9,6 +9,7 @@ import { SampleProvider } from './tests/SampleContext';
 import Test from './tests/Test';
 import {ContextTodoProvider} from './todo-contextAPI/ContextTodo'
 import ContextInput from './todo-contextAPI/ContextInput';
+import TodoInsert from './todo-redux/TodoInsert';
 
 function App() {
   // const onSubmit = (form: { name: string; description: string }) => {
@@ -16,19 +17,21 @@ function App() {
   // };
   return (
     // <SampleProvider>
-        <ContextTodoProvider>
+        // <ContextTodoProvider>
           <div className="App">
             <header className="App-header">
-              {/* <Counter /> */}
-              {/* <MyForm onSubmit={onSubmit} />; */}
-              {/* <ReducerSample /> */}
-              <Header />
-              {/* <InputContent /> */}
-          {/* <Test/> */}
-          <ContextInput />
+              <div className='fontColorBlack'>
+                {/* <Counter /> */}
+                {/* <MyForm onSubmit={onSubmit} />; */}
+                {/* <ReducerSample /> */}
+                {/* <Test/> */}
+                <Header />
+                {/* <InputContent /> */}
+                <TodoInsert/>
+              </div>
             </header>
           </div>
-        </ContextTodoProvider>
+        // </ContextTodoProvider>
     // </SampleProvider>
   );
 }

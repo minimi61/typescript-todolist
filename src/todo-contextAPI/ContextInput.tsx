@@ -30,7 +30,7 @@ const ContextInput = () => {
         
       <button className='btnStyle' type='submit'>+</button>
     </form>
-    {todo?.map((x, i) => <ContextList data={x} key={i} todo={todo} />)}
+    {todo?.map((x, i) => <ContextList data={x} key={i} />)}
     
   </div>  )
 }
