@@ -1,4 +1,6 @@
 const ADD_TODO = 'todo/ADD_TODO' as const;
+const REMOVE_TODO = 'todo/REMOVE_TODO' as const;
+const TOGGLE_TODO = 'todo/TOGGLE_TODO' as const;
 
 export const addTodo = (content: string) => ({
   type: ADD_TODO,
@@ -7,6 +9,22 @@ export const addTodo = (content: string) => ({
     content
   }
 })
+
+export const removeTodo = (id: number) => ({
+  type: REMOVE_TODO,
+  payload: {
+    id: id,
+  }
+})
+
+export const toggleTodo = (id: number) => ({
+  type: TOGGLE_TODO,
+  payload: {
+    id: id,
+  }
+})
+
+
 export type Todo = {
   id: number;
   content: string;
@@ -18,6 +36,8 @@ export type TodoState = Todo[]
 
 type TodoAction = 
   | ReturnType<typeof addTodo>
+  | ReturnType<typeof removeTodo>
+  | ReturnType<typeof toggleTodo>
 
 
 let nextId = 0;
@@ -37,8 +57,12 @@ const todoReducer = (state = initialState, action: TodoAction) => {
         id: action.payload.id,
         content: action.payload.content,
         complete: false
-        })
-    default:
+      })
+    case REMOVE_TODO:
+      return state.filter((x) => x.id !== action.payload.id)
+    case TOGGLE_TODO:
+      return state.map((x) => x.id === action.payload.id ? {...x, complete: !x.complete} : x)
+  default:
       return state
   }
 }
